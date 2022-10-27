@@ -63,6 +63,7 @@ class Chat extends StatefulWidget {
     this.nameBuilder,
     this.onAttachmentPressed,
     this.onAvatarTap,
+    this.onLikeTap,
     this.onBackgroundTap,
     this.onEndReached,
     this.onEndReachedThreshold,
@@ -219,6 +220,9 @@ class Chat extends StatefulWidget {
 
   /// See [Message.onMessageLongPress].
   final void Function(BuildContext context, types.Message)? onMessageLongPress;
+
+
+  final void Function(BuildContext context, types.Message)? onLikeTap;
 
   /// See [Message.onMessageStatusLongPress].
   final void Function(BuildContext context, types.Message)?
@@ -406,6 +410,7 @@ class ChatState extends State<Chat> {
                                         widget.onEndReachedThreshold,
                                     scrollController: _scrollController,
                                     scrollPhysics: widget.scrollPhysics,
+                                  
                                   ),
                                 ),
                               ),
@@ -522,6 +527,7 @@ class ChatState extends State<Chat> {
           messageWidth: messageWidth,
           nameBuilder: widget.nameBuilder,
           onAvatarTap: widget.onAvatarTap,
+          onLikeTap: widget.onLikeTap,
           onMessageDoubleTap: widget.onMessageDoubleTap,
           onMessageLongPress: widget.onMessageLongPress,
           onMessageStatusLongPress: widget.onMessageStatusLongPress,

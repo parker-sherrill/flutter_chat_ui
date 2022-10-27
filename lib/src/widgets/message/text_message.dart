@@ -171,6 +171,8 @@ class TextMessage extends StatelessWidget {
             options: options,
             text: message.text,
           ),
+
+        
       ],
     );
   }

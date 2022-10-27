@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:visibility_detector/visibility_detector.dart';
-
+import 'package:like_button/like_button.dart';
 import '../../models/bubble_rtl_alignment.dart';
 import '../../models/emoji_enlargement_behavior.dart';
 import '../../util.dart';
@@ -35,6 +35,7 @@ class Message extends StatelessWidget {
     required this.messageWidth,
     this.nameBuilder,
     this.onAvatarTap,
+    this.onLikeTap,
     this.onMessageDoubleTap,
     this.onMessageLongPress,
     this.onMessageStatusLongPress,
@@ -110,6 +111,8 @@ class Message extends StatelessWidget {
 
   /// See [UserAvatar.onAvatarTap].
   final void Function(types.User)? onAvatarTap;
+
+  final void Function(BuildContext context, types.Message)? onLikeTap;
 
   /// Called when user double taps on any message.
   final void Function(BuildContext context, types.Message)? onMessageDoubleTap;
@@ -227,13 +230,18 @@ class Message extends StatelessWidget {
             ? null
             : TextDirection.ltr,
         children: [
-          if (!currentUserIsAuthor && showUserAvatars) _avatarBuilder(),
+          if (!currentUserIsAuthor && showUserAvatars)
+            Padding(
+              padding: EdgeInsets.only(bottom: 20),
+              child: _avatarBuilder(),
+            ),
           ConstrainedBox(
             constraints: BoxConstraints(
               maxWidth: messageWidth.toDouble(),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
                   onDoubleTap: () => onMessageDoubleTap?.call(context, message),
@@ -261,6 +269,44 @@ class Message extends StatelessWidget {
                           enlargeEmojis,
                         ),
                 ),
+                if (message.metadata != null)
+                  if (message.metadata!["likeCount"] != 0)
+                    
+                    GestureDetector(
+                      onTap: () => onLikeTap?.call(context, message),
+                      child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color:
+                            InheritedChatTheme.of(context).theme.primaryColor,
+                      ),
+                      child: ClipRRect(
+                          borderRadius: borderRadius,
+                          child: RichText(
+                            text: TextSpan(
+                                children: <TextSpan> [
+                                  TextSpan(
+                                      text: '  ❤️', // emoji characters
+                                    style: TextStyle(
+                                    fontSize: 14,
+                                    fontFamily: 'EmojiOne',
+                                    ),
+                                  ),
+                                  if(message.metadata!["likeCount"] > 1)
+                                  TextSpan(
+                                      text: "${message.metadata!["likeCount"].toString()}  ", // emoji characters
+                                    style: TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.black
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          )
+                        ),
+                      ),
+                // SizedBox(height: 20,)
               ],
             ),
           ),

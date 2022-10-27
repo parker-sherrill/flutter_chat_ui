@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
-
+import 'package:hexcolor/hexcolor.dart';
 import '../../models/bubble_rtl_alignment.dart';
 import '../../util.dart';
 import '../state/inherited_chat_theme.dart';
@@ -42,17 +42,26 @@ class UserAvatar extends StatelessWidget {
           ? const EdgeInsetsDirectional.only(end: 8)
           : const EdgeInsets.only(right: 8),
       child: GestureDetector(
-        onTap: () => onAvatarTap?.call(author),
+        onTap: () {
+            if(author.id != 'system') {
+              onAvatarTap?.call(author);
+
+            }
+            
+        },
         child: CircleAvatar(
           backgroundColor: hasImage
               ? InheritedChatTheme.of(context)
                   .theme
                   .userAvatarImageBackgroundColor
-              : color,
+              : HexColor(author.metadata!["color"]),
           backgroundImage: hasImage
-              ? NetworkImage(author.imageUrl!, headers: imageHeaders)
+              ? (author.imageUrl! == 'system')
+                  ? AssetImage('assets/images/3x/plan_icon.png')
+                  : NetworkImage(author.imageUrl!, headers: imageHeaders)
+                      as ImageProvider<Object>
               : null,
-          radius: 16,
+          radius: 18,
           child: !hasImage
               ? Text(
                   initials,
