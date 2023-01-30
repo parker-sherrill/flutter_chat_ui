@@ -219,6 +219,7 @@ class TextMessageText extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ParsedText(
         parse: [
+          ...options.matchers,
           MatchText(
             onTap: (mail) async {
               final url = Uri(scheme: 'mailto', path: mail);
@@ -319,6 +320,7 @@ class TextMessageOptions {
     this.onLinkPressed,
     this.openOnPreviewImageTap = false,
     this.openOnPreviewTitleTap = false,
+    this.matchers = const [],
   });
 
   /// Whether user can tap and hold to select a text content.
@@ -332,4 +334,7 @@ class TextMessageOptions {
 
   /// See [LinkPreview.openOnPreviewTitleTap].
   final bool openOnPreviewTitleTap;
+
+  /// Additional matchers to parse the text.
+  final List<MatchText> matchers;
 }
