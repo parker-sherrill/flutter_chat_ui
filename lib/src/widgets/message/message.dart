@@ -296,7 +296,7 @@ class Message extends StatelessWidget {
                               text: TextSpan(
                                   children: <TextSpan> [
                                     const TextSpan(
-                                        text: '  ❤️  ', // emoji characters
+                                        text: '  ❤️ ', // emoji characters
                                       style: TextStyle(
                                       fontSize: 14,
                                       fontFamily: 'EmojiOne',
