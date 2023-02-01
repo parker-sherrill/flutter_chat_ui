@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:hexcolor/hexcolor.dart';
+
 import '../../models/bubble_rtl_alignment.dart';
 import '../../util.dart';
 import '../state/inherited_chat_theme.dart';
@@ -54,10 +55,10 @@ class UserAvatar extends StatelessWidget {
               ? InheritedChatTheme.of(context)
                   .theme
                   .userAvatarImageBackgroundColor
-              : HexColor(author.metadata!["color"]),
+              : HexColor(author.metadata!['color']),
           backgroundImage: hasImage
               ? (author.imageUrl! == 'system')
-                  ? AssetImage('assets/images/3x/plan_icon.png')
+                  ? const AssetImage('assets/images/3x/plan_icon.png')
                   : NetworkImage(author.imageUrl!, headers: imageHeaders)
                       as ImageProvider<Object>
               : null,

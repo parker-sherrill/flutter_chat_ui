@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
-import 'package:visibility_detector/visibility_detector.dart';
 import 'package:like_button/like_button.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 import '../../models/bubble_rtl_alignment.dart';
 import '../../models/emoji_enlargement_behavior.dart';
 import '../../util.dart';
@@ -241,7 +241,7 @@ class Message extends StatelessWidget {
         children: [
           if (!currentUserIsAuthor && showUserAvatars)
             Padding(
-              padding: EdgeInsets.only(bottom: 20),
+              padding: const EdgeInsets.only(bottom: 20),
               child: _avatarBuilder(),
             ),
           ConstrainedBox(
@@ -289,30 +289,32 @@ class Message extends StatelessWidget {
                         color:
                             InheritedChatTheme.of(context).theme.primaryColor,
                       ),
-                      child: ClipRRect(
-                          borderRadius: borderRadius,
-                          child: RichText(
-                            text: TextSpan(
-                                children: <TextSpan> [
-                                  TextSpan(
-                                      text: '  ❤️', // emoji characters
-                                    style: TextStyle(
-                                    fontSize: 14,
-                                    fontFamily: 'EmojiOne',
+                      child: Center(
+                        child: ClipRRect(
+                            borderRadius: borderRadius,
+                            child: RichText(
+                              text: TextSpan(
+                                  children: <TextSpan> [
+                                    const TextSpan(
+                                        text: '  ❤️  ', // emoji characters
+                                      style: TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: 'EmojiOne',
+                                      ),
                                     ),
-                                  ),
-                                  if(message.metadata!["likeCount"] > 1)
-                                  TextSpan(
-                                      text: "${message.metadata!["likeCount"].toString()}  ", // emoji characters
-                                    style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.black
+                                    if(message.metadata!['likeCount'] > 1)
+                                    TextSpan(
+                                        text: "${message.metadata!["likeCount"].toString()}  ", // emoji characters
+                                      style: const TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.black,
+                                      ),
                                     ),
-                                  )
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
-                          )
+                      ),
                         ),
                       ),
                 // SizedBox(height: 20,)
