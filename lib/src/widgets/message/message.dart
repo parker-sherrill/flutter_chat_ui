@@ -289,14 +289,14 @@ class Message extends StatelessWidget {
                         color:
                             InheritedChatTheme.of(context).theme.primaryColor,
                       ),
-                      child: Center(
-                        child: ClipRRect(
-                            borderRadius: borderRadius,
+                      child: ClipRRect(
+                          borderRadius: borderRadius,
+                          child: Center(
                             child: RichText(
                               text: TextSpan(
                                   children: <TextSpan> [
                                     const TextSpan(
-                                        text: '  ❤️ ', // emoji characters
+                                        text: '  ❤️', // emoji characters
                                       style: TextStyle(
                                       fontSize: 14,
                                       fontFamily: 'EmojiOne',
@@ -313,8 +313,8 @@ class Message extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                            ),
-                      ),
+                          ),
+                          ),
                         ),
                       ),
                 // SizedBox(height: 20,)
