@@ -284,7 +284,7 @@ class Message extends StatelessWidget {
                     GestureDetector(
                       onTap: () => onLikeTap?.call(context, message),
                       child: Container(
-                      width: 50,
+                      width: 40,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color:
