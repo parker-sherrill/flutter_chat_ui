@@ -284,7 +284,7 @@ class Message extends StatelessWidget {
                     GestureDetector(
                       onTap: () => onLikeTap?.call(context, message),
                       child: Container(
-                      width: 40,
+                   
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color:
@@ -297,7 +297,7 @@ class Message extends StatelessWidget {
                               text: TextSpan(
                                   children: <TextSpan> [
                                     const TextSpan(
-                                        text: '  ❤️ ', // emoji characters
+                                        text: '  ❤️  ', // emoji characters
                                       style: TextStyle(
                                       fontSize: 14,
                                       fontFamily: 'EmojiOne',
