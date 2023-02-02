@@ -278,46 +278,43 @@ class Message extends StatelessWidget {
                           enlargeEmojis,
                         ),
                 ),
-                // if (message.metadata != null)
-                //   if (message.metadata!['likeCount'] != 0)
+                if (message.metadata != null)
+                  if (message.metadata!['likeCount'] != 0)
                     
-                //     GestureDetector(
-                //       onTap: () => onLikeTap?.call(context, message),
-                //       child: Container(
-                //       decoration: BoxDecoration(
-                //         borderRadius: BorderRadius.circular(20),
-                //         color:
-                //             InheritedChatTheme.of(context).theme.primaryColor,
-                //       ),
-                //       child: ClipRRect(
-                //           borderRadius: borderRadius,
-                //           child: Center(
-                //             child: RichText(
-                //               text: TextSpan(
-                //                   children: <TextSpan> [
-                //                     const TextSpan(
-                //                         text: '  ❤️', // emoji characters
-                //                       style: TextStyle(
-                //                       fontSize: 14,
-                //                       fontFamily: 'EmojiOne',
-                //                       ),
-                //                     ),
-                //                     if(message.metadata!['likeCount'] > 1)
-                //                     TextSpan(
-                //                         text: "${message.metadata!["likeCount"].toString()}  ", // emoji characters
-                //                       style: const TextStyle(
-                //                       fontSize: 14,
-                //                       color: Colors.black,
-                //                       ),
-                //                     ),
-                //                   ],
-                //                 ),
-                //               ),
-                //           ),
-                //           ),
-                //         ),
-                //       ),
-                // SizedBox(height: 20,)
+                    GestureDetector(
+                      onTap: () => onLikeTap?.call(context, message),
+                      child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color:
+                            InheritedChatTheme.of(context).theme.primaryColor,
+                      ),
+                      child: ClipRRect(
+                          borderRadius: borderRadius,
+                          child: RichText(
+                            text: TextSpan(
+                                children: <TextSpan> [
+                                  const TextSpan(
+                                      text: '  ❤️', // emoji characters
+                                    style: TextStyle(
+                                    fontSize: 14,
+                                    fontFamily: 'EmojiOne',
+                                    ),
+                                  ),
+                                  if(message.metadata!['likeCount'] > 1)
+                                  TextSpan(
+                                      text: "${message.metadata!["likeCount"].toString()}  ", // emoji characters
+                                    style: const TextStyle(
+                                    fontSize: 14,
+                                    color: Colors.black,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
               ],
             ),
           ),
