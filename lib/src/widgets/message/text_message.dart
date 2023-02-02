@@ -161,7 +161,7 @@ class TextMessage extends StatelessWidget {
           if (options.isTextSelectable)
             SelectableText(message.text, style: emojiTextStyle)
           else
-            Text('${message.text}heloo', style: emojiTextStyle)
+            Text(message.text, style: emojiTextStyle,)
         else
           TextMessageText(
             bodyLinkTextStyle: bodyLinkTextStyle,
@@ -169,7 +169,7 @@ class TextMessage extends StatelessWidget {
             boldTextStyle: boldTextStyle,
             codeTextStyle: codeTextStyle,
             options: options,
-            text: '${message.text}heloo',
+            text: message.text,
           ),
 
         
