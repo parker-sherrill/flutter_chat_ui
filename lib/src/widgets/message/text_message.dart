@@ -161,7 +161,7 @@ class TextMessage extends StatelessWidget {
           if (options.isTextSelectable)
             SelectableText(message.text, style: emojiTextStyle)
           else
-            Text(message.text, style: emojiTextStyle)
+            Text(message.text, maxLines: 10, style: emojiTextStyle)
         else
           TextMessageText(
             bodyLinkTextStyle: bodyLinkTextStyle,
@@ -170,6 +170,7 @@ class TextMessage extends StatelessWidget {
             codeTextStyle: codeTextStyle,
             options: options,
             text: message.text,
+            maxLines: 10,
           ),
 
         
