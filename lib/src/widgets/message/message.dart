@@ -279,7 +279,7 @@ class Message extends StatelessWidget {
                         ),
                 ),
                 if (message.metadata != null)
-                  if (message.metadata!["likeCount"] != 0)
+                  if (message.metadata!['likeCount'] != 0)
                     
                     GestureDetector(
                       onTap: () => onLikeTap?.call(context, message),
